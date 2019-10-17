@@ -3,7 +3,10 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -49,6 +52,35 @@ public class DetailActivity extends AppCompatActivity {
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
+
+        // Create adapter for list
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, R.layout.custom_layout, sandwich.getAlsoKnownAs());
+
+        //Find the ListView with view ID also_known_tv
+        ListView alsoKnownAsView = findViewById(R.id.also_known_tv);
+
+        // Set the adapter on the list view so the list can be populated in the user interface
+        alsoKnownAsView.setAdapter(listAdapter);
+
+        // Use listAdapter for list of ingredients
+        listAdapter = new ArrayAdapter<>(this, R.layout.custom_layout, sandwich.getIngredients());
+
+        //Find the ListView with view ID also_known_tv
+        ListView ingredientsView = findViewById(R.id.ingredients_tv);
+
+        // Set the adapter on the list view so the list can be populated in the user interface
+        ingredientsView.setAdapter(listAdapter);
+
+        //Find the TextView with view ID origin_tv
+        TextView originView = findViewById(R.id.origin_tv);
+        // Set the text of Place of origin
+        originView.setText(sandwich.getPlaceOfOrigin());
+
+        //Find the TextView with view ID description_tv
+        TextView descriptionView = findViewById(R.id.description_tv);
+        // Set the text of Place of origin
+        descriptionView.setText(sandwich.getDescription());
+
     }
 
     private void closeOnError() {
