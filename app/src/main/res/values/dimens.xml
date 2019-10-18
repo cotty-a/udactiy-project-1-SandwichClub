@@ -2,4 +2,9 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_textView_height">60dp</dimen>
+    <dimen name="activity_textView_2nd_height">70dp</dimen>
+    <dimen name="activity_minimum_textSize">14sp</dimen>
+    <dimen name="activity_maximum_textSize">15sp</dimen>
+
 </resources>
