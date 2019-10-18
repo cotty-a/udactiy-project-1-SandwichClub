@@ -23,11 +23,13 @@ public class JsonUtils {
             JSONObject baseJsonResponse = new JSONObject(json);
             JSONObject name = baseJsonResponse.getJSONObject("name");
 
-            //Get Sandwich main name
+            // Get Sandwich main name
             mainName = name.getString("mainName");
             sandwich.setMainName(mainName);
 
-            // TODO: Image JSON data
+            // Get Sandwich image
+            String image = baseJsonResponse.getString("image");
+            sandwich.setImage(image);
 
             // Get Sandwich place of origin
             String placeOfOrigin = baseJsonResponse.getString("placeOfOrigin");
@@ -35,32 +37,23 @@ public class JsonUtils {
 
             //Get sandwich also known as
             JSONArray alsoKnownAsArray = name.getJSONArray("alsoKnownAs");
-            // TODO: Improve the for loop to be a separate method
             for(int i = 0; i < alsoKnownAsArray.length(); i++){
                 String currentKnownName = alsoKnownAsArray.getString(i);
                 alsoKnownAsList.add(currentKnownName);
             }
             sandwich.setAlsoKnownAs(alsoKnownAsList);
 
-            // TODO: DESCRIPTION JSON data
+            // Get sandwich description
             String description = baseJsonResponse.getString("description");
             sandwich.setDescription(description);
 
+            // Get sandwich description
             JSONArray ingredientsArray = baseJsonResponse.getJSONArray("ingredients");
-            // TODO: Improve the for loop to be a separate method
             for(int i = 0; i < ingredientsArray.length(); i++){
                 String ingredient = ingredientsArray.getString(i);
                 ingredientsList.add(ingredient);
             }
             sandwich.setIngredients(ingredientsList);
-
-
-
-
-
-
-
-
 
             return sandwich;
 
@@ -70,36 +63,6 @@ public class JsonUtils {
             // with the message from the exception.
             Log.e("JsonUtils", "Problem parsing the JSON results", e);
         }
-
-
-/*        JSONObject baseJsonResponse = new JSONObject(SAMPLE_JSON_RESPONSE);
-        JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
-
-        for(int i = 0; i < earthquakeArray.length(); i++){
-            JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
-            JSONObject properties = currentEarthquake.getJSONObject("properties");
-            String magnitude = properties.getString("mag");
-            String location = properties.getString("place");
-            String time = properties.getString("time");
-
-            Earthquake earthquake = new Earthquake(magnitude, location, time);
-            earthquakes.add(earthquake);*/
-
-
-
-        System.out.println(json);
-       //Test data for list
-        List<String> testList = new ArrayList<String>();
-        testList.add("List1");
-        testList.add("List2");
-        testList.add("List3");
-
-
-        //TODO Assign real data on sandwich object, may need to re-arrange and put the sandwich objects separately
-        //Test Data on assigning test data on sandwich object
-        //Sandwich sandwich = new Sandwich(mainName, alsoKnownAsList, "test place of origin", "test description", "testImage", ingredientsList);
-
-
 
         return null;
     }
