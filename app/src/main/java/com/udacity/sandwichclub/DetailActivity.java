@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import org.w3c.dom.Text;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -53,24 +55,6 @@ public class DetailActivity extends AppCompatActivity {
 
         setTitle(sandwich.getMainName());
 
-        // Create adapter for list
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, R.layout.custom_layout, sandwich.getAlsoKnownAs());
-
-        //Find the ListView with view ID also_known_tv
-        ListView alsoKnownAsView = findViewById(R.id.also_known_tv);
-
-        // Set the adapter on the list view so the list can be populated in the user interface
-        alsoKnownAsView.setAdapter(listAdapter);
-
-        // Use listAdapter for list of ingredients
-        listAdapter = new ArrayAdapter<>(this, R.layout.custom_layout, sandwich.getIngredients());
-
-        //Find the ListView with view ID also_known_tv
-        ListView ingredientsView = findViewById(R.id.ingredients_tv);
-
-        // Set the adapter on the list view so the list can be populated in the user interface
-        ingredientsView.setAdapter(listAdapter);
-
         //Find the TextView with view ID origin_tv
         TextView originView = findViewById(R.id.origin_tv);
         // Set the text of Place of origin
@@ -80,6 +64,22 @@ public class DetailActivity extends AppCompatActivity {
         TextView descriptionView = findViewById(R.id.description_tv);
         // Set the text of Place of origin
         descriptionView.setText(sandwich.getDescription());
+
+        //Add also known as list to Text view
+        StringBuilder builder = new StringBuilder();
+        for (String currentItem : sandwich.getAlsoKnownAs()) {
+            builder.append(currentItem + "\n");
+        }
+        TextView alsoKnownAsView2 = findViewById(R.id.also_known_tv);
+        alsoKnownAsView2.setText(builder.toString());
+
+        //Add Ingredients list to Text view
+        StringBuilder builder2 = new StringBuilder();
+        for (String ingredient : sandwich.getIngredients()) {
+            builder2.append(ingredient + "\n");
+        }
+        TextView ingredientsView = findViewById(R.id.ingredients_tv);
+        ingredientsView.setText(builder2.toString());
 
     }
 
