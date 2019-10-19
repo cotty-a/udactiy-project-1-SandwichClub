@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.udacity.sandwichclub.DetailActivity"
-    android:fillViewport="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.udacity.sandwichclub.DetailActivity"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -15,7 +12,8 @@
         <ImageView
             android:id="@+id/image_iv"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
+            android:layout_weight="7"
             android:adjustViewBounds="true"
             android:contentDescription="@string/sandwich_picture_content_description"
             android:scaleType="centerCrop" />
@@ -31,7 +29,8 @@
         <TextView
             android:id="@+id/origin_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginLeft="@dimen/activity_vertical_margin" />
 
         <TextView
@@ -45,7 +44,8 @@
         <ListView
             android:id="@+id/also_known_tv"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_textView_height"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             tools:text="Place holder for also known as data"
             android:divider="@null"
             android:dividerHeight="0dp"
@@ -58,14 +58,20 @@
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin" />
-    
-        <TextView
-            android:id="@+id/description_tv"
+
+        <ScrollView
+            android:fillViewport="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:justificationMode="inter_word"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:layout_marginRight="@dimen/activity_vertical_margin" />
+            android:layout_height="0dp"
+            android:layout_weight="3" >
+            <TextView
+                android:id="@+id/description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin" />
+        </ScrollView>
 
         <TextView
             android:layout_width="match_parent"
@@ -78,11 +84,11 @@
         <ListView
             android:id="@+id/ingredients_tv"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_textView_height"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginBottom="@dimen/activity_horizontal_margin" />
 
     </LinearLayout>
-</ScrollView>
