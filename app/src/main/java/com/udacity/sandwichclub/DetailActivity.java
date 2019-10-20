@@ -48,30 +48,48 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
 
-        //Find the TextView with view ID origin_tv
-        TextView originView = findViewById(R.id.origin_tv);
-        // Set the text of Place of origin
-        originView.setText(sandwich.getPlaceOfOrigin());
-
         //Find the TextView with view ID description_tv
         TextView descriptionView = findViewById(R.id.description_tv);
         // Set the text of Place of origin
         descriptionView.setText(sandwich.getDescription());
+
+
+        //Find the TextView with view ID origin_tv
+        TextView originView = findViewById(R.id.origin_tv);
+
+        /* If there is no data available for Sandwich's origin, display detail_error_message
+        Otherwise, display JSON data*/
+        if(sandwich.getPlaceOfOrigin().equals("")) {
+            originView.setText(R.string.detail_error_message);
+        }else{
+            String origin = sandwich.getPlaceOfOrigin() + "\n";
+            originView.setText(origin);
+        }
+
 
         //Add also known as list to Text view
         StringBuilder builder = new StringBuilder();
         for (String currentItem : sandwich.getAlsoKnownAs()) {
             builder.append(currentItem + "\n");
         }
-        TextView alsoKnownAsView2 = findViewById(R.id.also_known_tv);
-        alsoKnownAsView2.setText(builder.toString());
+        //Find the TextView with view ID also_known_tv
+        TextView alsoKnownAsView = findViewById(R.id.also_known_tv);
+
+        /* If there is no data available for Sandwich's also known as, display detail_error_message
+        Otherwise, display JSON data*/
+        String alsoKnownAs = builder.toString();
+        if(alsoKnownAs == "") {
+            alsoKnownAsView.setText(R.string.detail_error_message);
+        }else{
+            alsoKnownAsView.setText(alsoKnownAs);
+        }
+
 
         //Add Ingredients list to Text view
         StringBuilder builder2 = new StringBuilder();
@@ -88,7 +106,4 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
-
-    }
 }
